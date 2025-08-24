@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 // CONFIGURAÇÕES - COLOQUE SUAS CHAVES AQUI
 // ==========================================
 const VERIFY_TOKEN = "IGAALBZBhPKcCJBZAE0zSlAtc01ZAeFA3dk9sWEtBRE5hckdrQjNlTUhGQktDTjFNT0NfSXFuNFBTTDZAqaUlIYnlGcmFKOU5KbHdaWldzemh1dVZAYZA0JlU0prZAWE0RnBIcEdGcmtveGNDN05na21ldHFEM2lQWDJqdGZAJNUtWY3NOQQZDZD"; // mesmo do Meta Developers
-const OPENAI_API_KEY = "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"; // <- coloque sua OpenAI API Key
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const INSTAGRAM_ACCESS_TOKEN = "EAFgKiZASpbsYBPXymo7LB1rHylWzbhhwg2XyCY7lfkHrjrlq6UR9vWq1LF7fTiLLM0bC7DE2xMMA5NAZCP1FpbBYeHSa0svUjxI1TiIZCh3rklcPdY9Dn3PAM3ZAFlJsrUQNJv850wT1S22ZCfiZAPew0eLzt8F8TamiPhdd2tAGRZAuZBbD3nHZCMsxSy18ejTWG1ZADQsiResNYyi1qTPqRraknbmRSdU1FeKpvCP37p3CXuuFrI7aIY"; // <- long-lived token do Instagram Graph API
 // ==========================================
 
