@@ -5,7 +5,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // ⚡ Token de verificação que você definiu no Meta Developers
-const VERIFY_TOKEN = "meu_token_secreto";
+const VERIFY_TOKEN = "IGAALBZBhPKcCJBZAE0zSlAtc01ZAeFA3dk9sWEtBRE5hckdrQjNlTUhGQktDTjFNT0NfSXFuNFBTTDZAqaUlIYnlGcmFKOU5KbHdaWldzemh1dVZAYZA0JlU0prZAWE0RnBIcEdGcmtveGNDN05na21ldHFEM2lQWDJqdGZAJNUtWY3NOQQZDZD";
 
 // Rota para verificar o webhook
 app.get("/webhook", (req, res) => {
