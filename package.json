@@ -1,13 +1,16 @@
 {
-  "name": "instagram-webhook",
+  "name": "instagram-auto-reply",
   "version": "1.0.0",
+  "description": "Webhook para responder comentários do Instagram usando OpenAI",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
     "start": "node index.js"
   },
+  "author": "Kelwin Carvalho",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "body-parser": "^1.20.2"
+    "axios": "^1.7.5",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2"
   }
 }
