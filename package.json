@@ -9,8 +9,8 @@
   "author": "Kelwin Carvalho",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.7.5",
+    "express": "^4.18.2",
     "body-parser": "^1.20.2",
-    "express": "^4.18.2"
+    "axios": "^1.7.5"
   }
 }
