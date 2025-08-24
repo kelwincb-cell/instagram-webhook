@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 // ==========================================
 const VERIFY_TOKEN = "IGAALBZBhPKcCJBZAE0zSlAtc01ZAeFA3dk9sWEtBRE5hckdrQjNlTUhGQktDTjFNT0NfSXFuNFBTTDZAqaUlIYnlGcmFKOU5KbHdaWldzemh1dVZAYZA0JlU0prZAWE0RnBIcEdGcmtveGNDN05na21ldHFEM2lQWDJqdGZAJNUtWY3NOQQZDZD"; // mesmo do Meta Developers
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const INSTAGRAM_ACCESS_TOKEN = "EAFgKiZASpbsYBPXNfA9anTLXP4nVznLm1RjV1z3D8WtNtq3WcT669GMZBBe3BgzkLCdgTRcVb8O23i2i7HLTFEkZBuyx8ys31ZCg8Tm5l3dNKBWQJxEICB5Ejac4Xi83SYd7J8qT2nJaqHo1ry29XhEx5bBxrje0taO3vvrrFJJaxwZBoXrBF3Xpeomo7qm0QcRO37Cg1kYmliHbvhQkaOd65Bxdj10NMQv1VjDePwVK5iIzK8xW3LAHluZBiFz8EZD"; // <- long-lived token do Instagram Graph API
+const INSTAGRAM_ACCESS_TOKEN = "EAFgKiZASpbsYBPfgTYWt8t2DjWcKQlK4b6erAqFJzkdLH1l4ypgaAoGPynBnmKZCfCqeoct0HDOVTFqCvGGVDS3hdexZCsTQf868BB46DGQZCPbEDhNZBTAYgR9MOzYG49EaTNU90H5wZA5v612T5MZA26ZCPH4dGQSpvJSvmRF2QkavfDQmvJbi7nS1CrN1cTnzpitzjLvkvj9z"; // <- long-lived token do Instagram Graph API
 // ==========================================
 
 // Rota para verificar o webhook
