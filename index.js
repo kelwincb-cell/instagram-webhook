@@ -9,9 +9,9 @@ app.use(bodyParser.json());
 // ==========================================
 // CONFIGURAÇÕES - COLOQUE SUAS CHAVES AQUI
 // ==========================================
-const VERIFY_TOKEN = "IGAALBZBhPKcCJBZAE0zSlAtc01ZAeFA3dk9sWEtBRE5hckdrQjNlTUhGQktDTjFNT0NfSXFuNFBTTDZAqaUlIYnlGcmFKOU5KbHdaWldzemh1dVZAYZA0JlU0prZAWE0RnBIcEdGcmtveGNDN05na21ldHFEM2lQWDJqdGZAJNUtWY3NOQQZDZD"; // mesmo do Meta Developers
+const VERIFY_TOKEN = "IGAALBZBhPKcCJBZAE0zSlAtc01ZAeFA3dk9sWEtBRE5hckdrQjNlTUhGQktDTjFNT0NfSXFuNFBTTDZAqaUlIYnlGcmFKOU5KbHdaWldzemh1dVZAYZA0JlU0prZAWE0RnBIcEdGcmtveGNDN05na21ldHFEM2lQWDJqdGZAJNUtWY3NOQQZDZD";
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const INSTAGRAM_ACCESS_TOKEN = "EAFgKiZASpbsYBPfgTYWt8t2DjWcKQlK4b6erAqFJzkdLH1l4ypgaAoGPynBnmKZCfCqeoct0HDOVTFqCvGGVDS3hdexZCsTQf868BB46DGQZCPbEDhNZBTAYgR9MOzYG49EaTNU90H5wZA5v612T5MZA26ZCPH4dGQSpvJSvmRF2QkavfDQmvJbi7nS1CrN1cTnzpitzjLvkvj9z"; // <- long-lived token do Instagram Graph API
+const INSTAGRAM_ACCESS_TOKEN = "EAFgKiZASpbsYBPfgTYWt8t2DjWcKQlK4b6erAqFJzkdLH1l4ypgaAoGPynBnmKZCfCqeoct0HDOVTFqCvGGVDS3hdexZCsTQf868BB46DGQZCPbEDhNZBTAYgR9MOzYG49EaTNU90H5wZA5v612T5MZA26ZCPH4dGQSpvJSvmRF2QkavfDQmvJbi7nS1CrN1cTnzpitzjLvkvj9z";
 // ==========================================
 
 // Rota para verificar o webhook
@@ -37,8 +37,12 @@ app.post("/webhook", async (req, res) => {
     const changes = entry.changes || [];
     for (const change of changes) {
       if (change.field === "comments") {
-        const commentId = change.value.id;
+        // ⚡ Aqui está a mudança principal
+        const commentId = change.value.comment_id || change.value.id; 
         const commentText = change.value.text;
+
+        console.log("ID do comentário recebido:", commentId);
+        console.log("Texto do comentário:", commentText);
 
         try {
           // Chama a OpenAI para gerar resposta
@@ -47,12 +51,9 @@ app.post("/webhook", async (req, res) => {
             {
               model: "gpt-4.1-mini",
               messages: [
-                {
-                  role: "system",
-                  content: "Você é um assistente simpático que responde comentários de Instagram."
-                },
+                { role: "system", content: "Você é um assistente simpático que responde comentários de Instagram." },
                 { role: "user", content: commentText }
-              ],
+              ]
             },
             {
               headers: {
@@ -66,8 +67,14 @@ app.post("/webhook", async (req, res) => {
 
           // Posta resposta no Instagram
           await axios.post(
-            `https://graph.facebook.com/${commentId}/replies`,
-            { message: replyText, access_token: INSTAGRAM_ACCESS_TOKEN }
+            `https://graph.facebook.com/v21.0/${commentId}/replies`,
+            null, // body vazio
+            {
+              params: {
+                message: replyText,
+                access_token: INSTAGRAM_ACCESS_TOKEN
+              }
+            }
           );
 
           console.log("Comentário respondido:", replyText);
